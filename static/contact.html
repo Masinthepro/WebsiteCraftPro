@@ -142,7 +142,7 @@
                         <div class="contact-form-card">
                             <h2 class="form-title">Send us a <span class="highlight-text">Message</span></h2>
                             
-                            <form id="contactForm" action="#" method="post" class="contact-form">
+                            <form id="contactForm" class="contact-form">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required>
                                     <label for="name">Your Name *</label>
@@ -154,8 +154,8 @@
                                 </div>
                                 
                                 <div class="form-floating mb-3">
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(123) 456-7890">
-                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="123-456-7890">
+                                    <label for="phone">Phone Number (XXX-XXX-XXXX)</label>
                                 </div>
                                 
                                 <div class="form-floating mb-3">
@@ -177,6 +177,15 @@
                                 <div class="form-text text-muted mb-3">Fields marked with * are required</div>
                                 
                                 <button type="submit" class="btn btn-primary btn-glow btn-lg w-100">Send Message</button>
+                                
+                                <div class="form-submission-notice mt-3">
+                                    <p class="text-center">
+                                        <i class="fas fa-info-circle"></i> This is a standalone HTML page. In a real environment, this form would connect to a backend service.
+                                    </p>
+                                    <p class="text-center">
+                                        Please use the phone or email contact information to get in touch directly.
+                                    </p>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -306,5 +315,85 @@
     <!-- Custom JS -->
     <script src="js/main.js"></script>
     <script src="js/form-validation.js"></script>
+    
+    <script>
+        // Initialize form parameters from URL
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get package parameter from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const packageParam = urlParams.get('package');
+            
+            // Set package select value if parameter exists
+            if (packageParam) {
+                const packageSelect = document.getElementById('package');
+                for (let i = 0; i < packageSelect.options.length; i++) {
+                    if (packageSelect.options[i].value === packageParam) {
+                        packageSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            
+            // Form submission handling for static page
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Validate the form
+                    let isValid = true;
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const message = document.getElementById('message').value.trim();
+                    
+                    if (name === '') {
+                        isValid = false;
+                        document.getElementById('name').classList.add('is-invalid');
+                    }
+                    
+                    if (email === '' || !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+                        isValid = false;
+                        document.getElementById('email').classList.add('is-invalid');
+                    }
+                    
+                    if (phone !== '' && !phone.match(/^\d{3}-\d{3}-\d{4}$/)) {
+                        isValid = false;
+                        document.getElementById('phone').classList.add('is-invalid');
+                    }
+                    
+                    if (message === '') {
+                        isValid = false;
+                        document.getElementById('message').classList.add('is-invalid');
+                    }
+                    
+                    if (isValid) {
+                        // Show success message for demonstration
+                        const formHTML = contactForm.innerHTML;
+                        contactForm.innerHTML = `
+                            <div class="alert alert-success">
+                                <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Message Sent!</h4>
+                                <p>Thank you for reaching out to us. In a live environment, your message would have been sent.</p>
+                                <p>Please use our contact details to get in touch directly:</p>
+                                <ul>
+                                    <li>Phone: <a href="tel:702-706-6269">702-706-6269</a></li>
+                                    <li>Email: <a href="mailto:masin.1752991@gmail.com">masin.1752991@gmail.com</a></li>
+                                </ul>
+                                <hr>
+                                <button class="btn btn-outline-success" id="resetForm">Send Another Message</button>
+                            </div>
+                        `;
+                        
+                        // Add reset form handler
+                        document.getElementById('resetForm').addEventListener('click', function() {
+                            contactForm.innerHTML = formHTML;
+                            // Re-initialize the event listeners
+                            document.dispatchEvent(new Event('DOMContentLoaded'));
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
