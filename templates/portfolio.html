@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+
+{% block title %}Portfolio - CodeCraft Studios{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="{{ url_for('static', filename='images/hero-bg.svg') }}" alt="Background" width="100%" height="100%">
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-on-scroll">Our Portfolio</h1>
+                <p class="hero-subtitle animate-on-scroll">Discover our latest web development projects and success stories.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Categories -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <a href="#" class="btn btn-outline mb-2 mx-2">All Projects</a>
+                <a href="#" class="btn btn-outline mb-2 mx-2">E-Commerce</a>
+                <a href="#" class="btn btn-outline mb-2 mx-2">Business</a>
+                <a href="#" class="btn btn-outline mb-2 mx-2">Portfolio</a>
+                <a href="#" class="btn btn-outline mb-2 mx-2">Landing Pages</a>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">TechWorld E-Commerce</h3>
+                        <p class="portfolio-category">E-Commerce</p>
+                        <p class="portfolio-description">A comprehensive online store for a tech retailer with product filtering, user accounts, and secure payment processing.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Legal Partners</h3>
+                        <p class="portfolio-category">Business</p>
+                        <p class="portfolio-description">A professional website for a law firm featuring team profiles, service descriptions, and a case study archive.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">FreshFood Delivery</h3>
+                        <p class="portfolio-category">E-Commerce</p>
+                        <p class="portfolio-description">An online food ordering platform with real-time delivery tracking and customer loyalty program.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">CreativeStudio</h3>
+                        <p class="portfolio-category">Portfolio</p>
+                        <p class="portfolio-description">A visually stunning portfolio website for a creative agency with interactive project showcases.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">FitLife Gym</h3>
+                        <p class="portfolio-category">Business</p>
+                        <p class="portfolio-description">A fitness center website with class schedules, membership management, and online booking system.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">CloudTech SaaS</h3>
+                        <p class="portfolio-category">Landing Page</p>
+                        <p class="portfolio-description">A conversion-focused landing page for a SaaS product with animated features and sign-up form.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 7 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Green Living Blog</h3>
+                        <p class="portfolio-category">Blog</p>
+                        <p class="portfolio-description">A content-rich blog website with category filtering, newsletter subscription, and social sharing integration.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 8 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">MountainView Resort</h3>
+                        <p class="portfolio-category">Business</p>
+                        <p class="portfolio-description">A luxury resort website with virtual tours, room booking system, and special offers management.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 9 -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">FinTech Solutions</h3>
+                        <p class="portfolio-category">Landing Page</p>
+                        <p class="portfolio-description">A high-converting landing page for a financial technology company with interactive calculators and testimonials.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section class="section services">
+        <div class="container">
+            <h2 class="section-title">Our Development Process</h2>
+            <p class="section-subtitle">We follow a structured approach to ensure every project is delivered on time and exceeds expectations.</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="service-title">1. Discovery</h3>
+                    <p class="service-description">We start by understanding your business goals, target audience, and project requirements through detailed consultations.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3 class="service-title">2. Planning</h3>
+                    <p class="service-description">Creating a comprehensive project plan with timelines, deliverables, and technical specifications.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">3. Design</h3>
+                    <p class="service-description">Developing wireframes and visual designs that align with your brand identity and user experience goals.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">4. Development</h3>
+                    <p class="service-description">Building your website with clean, efficient code that ensures optimal performance and functionality.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3 class="service-title">5. Testing</h3>
+                    <p class="service-description">Thorough testing across devices and browsers to ensure everything works flawlessly.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="service-title">6. Launch</h3>
+                    <p class="service-description">Deploying your website and providing training on how to use and maintain it effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <p class="section-subtitle">Here's what our clients say about working with us.</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="service-description mb-4">"CodeCraft Studios delivered beyond our expectations. Their attention to detail and technical expertise resulted in a website that perfectly represents our brand and has significantly increased our online conversions."</p>
+                    <h4 class="service-title">Sarah Johnson</h4>
+                    <p class="service-description">CEO, TechWorld</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="service-description mb-4">"Working with CodeCraft was a seamless experience from start to finish. They took the time to understand our business needs and created a custom solution that has transformed our online presence."</p>
+                    <h4 class="service-title">Michael Chen</h4>
+                    <p class="service-description">Marketing Director, FreshFood</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="service-description mb-4">"The team at CodeCraft Studios is incredibly talented and professional. They delivered our e-commerce site on time and within budget, and the results have exceeded our expectations."</p>
+                    <h4 class="service-title">Amanda Lee</h4>
+                    <p class="service-description">Owner, StyleBoutique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="service-card animate-on-scroll">
+                <h2 class="section-title mb-4">Ready to Start Your Project?</h2>
+                <p class="service-description mb-4">Let's discuss how we can create a custom website solution that meets your specific needs and exceeds your expectations.</p>
+                <div class="text-center">
+                    <a href="/contact" class="btn btn-primary">Contact Us Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,42 +1,25 @@
 import os
 import logging
 from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
-from werkzeug.security import generate_password_hash
+import urllib.parse
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
-class Base(DeclarativeBase):
-    pass
-
-db = SQLAlchemy(model_class=Base)
+# Create Flask app
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "dev-secret-key")
 
-# Configure database
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///website.db")
-app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
-    "pool_recycle": 300,
-    "pool_pre_ping": True,
-}
-db.init_app(app)
-
-# Import routes after app initialization to avoid circular imports
-from forms import ContactForm
-import models
-
-with app.app_context():
-    db.create_all()
+# In-memory storage for contact submissions (in a real app, you'd use a database)
+contact_submissions = []
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/packages')
-def packages():
-    return render_template('packages.html')
+@app.route('/pricing')
+def pricing():
+    return render_template('pricing.html')
 
 @app.route('/portfolio')
 def portfolio():
@@ -48,32 +31,41 @@ def about():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    form = ContactForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        # Save the contact message
-        new_contact = models.Contact(
-            name=form.name.data,
-            email=form.email.data,
-            phone=form.phone.data,
-            package=form.package.data,
-            message=form.message.data
-        )
-        db.session.add(new_contact)
-        db.session.commit()
+    if request.method == 'POST':
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        phone = request.form.get('phone', '').strip()
+        message = request.form.get('message', '').strip()
+        package = request.form.get('package', '').strip()
         
-        flash('Your message has been sent! We will contact you shortly.', 'success')
-        return redirect(url_for('contact_success'))
+        # Simple validation
+        if not name or not email or not message:
+            flash('Please fill out all required fields.', 'error')
+            return render_template('contact.html')
+        
+        # Email validation
+        if '@' not in email or '.' not in email:
+            flash('Please enter a valid email address.', 'error')
+            return render_template('contact.html')
+        
+        # Store the submission
+        submission = {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'message': message,
+            'package': package
+        }
+        contact_submissions.append(submission)
+        
+        # Log the submission
+        app.logger.info(f"New contact submission: {submission}")
+        
+        # Flash success message
+        flash('Thank you for contacting us! We will get back to you soon.', 'success')
+        return redirect(url_for('contact'))
     
-    return render_template('contact.html', form=form)
+    return render_template('contact.html')
 
-@app.route('/contact/success')
-def contact_success():
-    return render_template('contact_success.html')
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
-@app.errorhandler(500)
-def server_error(e):
-    return render_template('500.html'), 500
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)

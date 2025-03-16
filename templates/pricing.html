@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block title %}Pricing - CodeCraft Studios{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="{{ url_for('static', filename='images/hero-bg.svg') }}" alt="Background" width="100%" height="100%">
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-on-scroll">Our Pricing Plans</h1>
+                <p class="hero-subtitle animate-on-scroll">Choose the perfect package for your business needs and budget.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Transparent Pricing</h2>
+            <p class="section-subtitle">We offer competitive rates with no hidden fees. Select the plan that suits your requirements or contact us for a custom solution.</p>
+            
+            <div class="pricing-grid">
+                <!-- Basic Plan -->
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Basic</h3>
+                        <div class="pricing-price">$200</div>
+                        <div class="pricing-period">starting price</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Responsive Design
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Up to 5 Pages
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Contact Form
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Mobile Optimization
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Basic SEO Setup
+                        </li>
+                        <li class="pricing-feature disabled">
+                            <i class="fas fa-times"></i> E-Commerce Functionality
+                        </li>
+                        <li class="pricing-feature disabled">
+                            <i class="fas fa-times"></i> Custom Animations
+                        </li>
+                        <li class="pricing-feature disabled">
+                            <i class="fas fa-times"></i> Content Management System
+                        </li>
+                    </ul>
+                    
+                    <div class="pricing-cta">
+                        <a href="/contact?package=Basic" class="btn btn-outline">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Standard Plan -->
+                <div class="pricing-card featured animate-on-scroll">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Standard</h3>
+                        <div class="pricing-price">$500</div>
+                        <div class="pricing-period">starting price</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Responsive Design
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Up to 10 Pages
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Contact Form
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Mobile Optimization
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Advanced SEO Setup
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Content Management System
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Custom Animations
+                        </li>
+                        <li class="pricing-feature disabled">
+                            <i class="fas fa-times"></i> E-Commerce Functionality
+                        </li>
+                    </ul>
+                    
+                    <div class="pricing-cta">
+                        <a href="/contact?package=Standard" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Premium</h3>
+                        <div class="pricing-price">$1,200</div>
+                        <div class="pricing-period">starting price</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Responsive Design
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Unlimited Pages
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Advanced Contact Forms
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Mobile Optimization
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Advanced SEO Setup
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Content Management System
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> Custom Animations
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i> E-Commerce Functionality
+                        </li>
+                    </ul>
+                    
+                    <div class="pricing-cta">
+                        <a href="/contact?package=Premium" class="btn btn-outline">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Additional Services Section -->
+    <section class="section services">
+        <div class="container">
+            <h2 class="section-title">Additional Services</h2>
+            <p class="section-subtitle">Enhance your website with these add-on services to maximize its performance and impact.</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="service-title">Hosting & Domain</h3>
+                    <p class="service-description">Reliable hosting services with regular backups and domain registration starting at $15/month.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="service-title">Maintenance</h3>
+                    <p class="service-description">Keep your website secure and up-to-date with our monthly maintenance plans starting at $50/month.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">SEO Package</h3>
+                    <p class="service-description">Comprehensive SEO optimization to improve your search engine rankings starting at $300.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3 class="service-title">Content Creation</h3>
+                    <p class="service-description">Professional copywriting services for your website content starting at $100 per page.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Find answers to common questions about our web development services and pricing.</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <h3 class="service-title">How long does it take to build a website?</h3>
+                    <p class="service-description">Most projects take 2-6 weeks depending on complexity. Basic websites can be completed in 2-3 weeks, while more complex sites with e-commerce functionality may take 4-6 weeks.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <h3 class="service-title">Do you offer payment plans?</h3>
+                    <p class="service-description">Yes, we typically require a 50% deposit to begin work, with the remaining balance due upon completion. For larger projects, we can arrange milestone-based payments.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <h3 class="service-title">What if I need revisions?</h3>
+                    <p class="service-description">We include two rounds of revisions in all our packages. Additional revisions can be accommodated at an hourly rate of $50/hour.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <h3 class="service-title">Do you provide website maintenance?</h3>
+                    <p class="service-description">Yes, we offer ongoing maintenance plans to keep your website secure, up-to-date, and running smoothly. Plans start at $50/month.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="service-card animate-on-scroll">
+                <h2 class="section-title mb-4">Need a Custom Solution?</h2>
+                <p class="service-description mb-4">If our standard packages don't quite fit your needs, we're happy to create a custom solution tailored specifically to your business requirements and goals.</p>
+                <div class="text-center">
+                    <a href="/contact" class="btn btn-primary">Contact Us for a Custom Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
