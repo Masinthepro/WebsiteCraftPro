@@ -9,7 +9,7 @@ from datetime import datetime
 logging.basicConfig(level=logging.DEBUG)
 
 # Create Flask app
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./', static_url_path='/', template_folder='./')
 app.secret_key = os.environ.get("SESSION_SECRET", "dev_secret_key")
 
 # Simple in-memory storage for contact form submissions
@@ -18,19 +18,19 @@ contact_submissions = []
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', template_folder='./')
 
 @app.route('/pricing')
 def pricing():
-    return render_template('pricing.html')
+    return render_template('pricing.html', template_folder='./')
 
 @app.route('/portfolio')
 def portfolio():
-    return render_template('portfolio.html')
+    return render_template('portfolio.html', template_folder='./')
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', template_folder='./')
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -62,7 +62,8 @@ def contact():
                                   email=email, 
                                   phone=phone, 
                                   message=message,
-                                  package=package)
+                                  package=package,
+                                  template_folder='./')
         
         # Store the submission
         submission = {
@@ -83,7 +84,7 @@ def contact():
         except Exception as e:
             app.logger.error(f"Failed to process form submission: {str(e)}")
             flash("Your message was received but we encountered an issue processing it. We'll get back to you soon.", 'warning')
-            return render_template('contact.html')
+            return render_template('contact.html', template_folder='./')
         
         # Set session variable for confirmation page
         session['submission'] = submission
@@ -91,7 +92,7 @@ def contact():
         return redirect(url_for('confirmation'))
     
     # GET request - just show the form
-    return render_template('contact.html')
+    return render_template('contact.html', template_folder='./')
 
 @app.route('/confirmation')
 def confirmation():
@@ -102,7 +103,7 @@ def confirmation():
     
     # Clear from session after displaying
     session.pop('submission', None)
-    return render_template('confirmation.html', submission=submission)
+    return render_template('confirmation.html', submission=submission, template_folder='./')
 
 def send_email_notification(submission):
     """

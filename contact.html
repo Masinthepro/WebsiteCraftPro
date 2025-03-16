@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us - DevCraft Studios{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title glow-text">Contact <span class="highlight-text">Us</span></h1>
+        <div class="page-breadcrumb">
+            <a href="{{ url_for('index') }}">Home</a> / Contact
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="contact-info-card">
+                    <div class="section-header">
+                        <h2 class="section-title">Get In <span class="highlight-text">Touch</span></h2>
+                        <div class="section-divider"></div>
+                        <p class="section-subtitle">We'd love to hear about your project</p>
+                    </div>
+                    
+                    <p class="contact-description">
+                        Ready to start your project? Have questions about our services? Reach out to us using the form or contact information below. Our team is ready to assist you.
+                    </p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3 class="contact-method-title">Phone</h3>
+                                <p class="contact-method-value"><a href="tel:702-706-6269">702-706-6269</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3 class="contact-method-title">Email</h3>
+                                <p class="contact-method-value"><a href="mailto:masin.1752991@gmail.com">masin.1752991@gmail.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3 class="contact-method-title">Business Hours</h3>
+                                <p class="contact-method-value">Monday - Friday: 9AM - 6PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3 class="contact-method-title">Payment Method</h3>
+                                <p class="contact-method-value">Cash App preferred</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-connect">
+                        <h3 class="social-title">Connect With Us</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="contact-form-card">
+                    <h2 class="form-title">Send us a <span class="highlight-text">Message</span></h2>
+                    
+                    <form id="contactForm" action="{{ url_for('contact') }}" method="post" class="contact-form">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" value="{{ name or '' }}" required>
+                            <label for="name">Your Name *</label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="{{ email or '' }}" required>
+                            <label for="email">Email Address *</label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="(123) 456-7890" value="{{ phone or '' }}">
+                            <label for="phone">Phone Number</label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="package" name="package">
+                                <option value="" {% if not package %}selected{% endif %}>Select a package (optional)</option>
+                                <option value="Basic" {% if package == 'Basic' %}selected{% endif %}>Basic ($200)</option>
+                                <option value="Professional" {% if package == 'Professional' %}selected{% endif %}>Professional ($500)</option>
+                                <option value="Enterprise" {% if package == 'Enterprise' %}selected{% endif %}>Enterprise ($1000+)</option>
+                                <option value="Custom" {% if package == 'Custom' %}selected{% endif %}>Custom Project</option>
+                            </select>
+                            <label for="package">Interested Package</label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="message" name="message" placeholder="Your message here" style="height: 150px" required>{{ message or '' }}</textarea>
+                            <label for="message">Your Message *</label>
+                        </div>
+                        
+                        <div class="form-text text-muted mb-3">Fields marked with * are required</div>
+                        
+                        <button type="submit" class="btn btn-primary btn-glow btn-lg w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Frequently Asked <span class="highlight-text">Questions</span></h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Answers to common questions about our process</p>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <div class="accordion" id="contactFaqAccordion1">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                What happens after I submit the contact form?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#contactFaqAccordion1">
+                            <div class="accordion-body">
+                                After submitting the form, you'll receive a confirmation email. Our team will review your inquiry and get back to you within 24-48 business hours to discuss your project in more detail or answer any questions you may have.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How long does it take to complete a website?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#contactFaqAccordion1">
+                            <div class="accordion-body">
+                                The timeline varies depending on the complexity of your project. A basic website typically takes 1-2 weeks, while more complex projects can take 4-8 weeks or longer. We'll provide you with a specific timeline during our initial consultation based on your requirements.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="accordion" id="contactFaqAccordion2">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                What information should I prepare for our first meeting?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#contactFaqAccordion2">
+                            <div class="accordion-body">
+                                It's helpful to have information about your business/project goals, target audience, any design preferences, examples of websites you like, content you want to include, and your budget range. The more information you can provide, the better we can understand your vision.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Do you offer custom solutions beyond the listed packages?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#contactFaqAccordion2">
+                            <div class="accordion-body">
+                                Absolutely! While we offer standard packages to provide a starting point, we understand that every project is unique. We're happy to create custom solutions tailored specifically to your needs and budget. Just select "Custom Project" in the form and describe your requirements.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
+{% endblock %}

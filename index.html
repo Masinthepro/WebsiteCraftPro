@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+
+{% block title %}DevCraft Studios - Professional Web Development{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="hero-content">
+                    <h1 class="hero-title glow-text">Craft Your Digital <span class="highlight-text">Presence</span></h1>
+                    <h2 class="hero-subtitle">Professional Web Development Solutions</h2>
+                    <p class="hero-description">
+                        We create stunning, high-performance websites that elevate your brand in the digital landscape. 
+                        Our team specializes in crafting immersive web experiences with cutting-edge technology.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="{{ url_for('pricing') }}" class="btn btn-primary btn-glow">Explore Services</a>
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-light ms-3">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero-image-container">
+                    <div class="code-animation">
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Your Amazing Site&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header class="header"&gt;
+    &lt;nav&gt;
+      &lt;!-- Navigation --&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  
+  &lt;main&gt;
+    &lt;section class="hero"&gt;
+      &lt;h1&gt;Welcome&lt;/h1&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Do Section -->
+<section class="what-we-do">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">What We <span class="highlight-text">Do</span></h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">We build web solutions that drive results</p>
+        </div>
+        
+        <div class="row g-4 mt-3">
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="service-title">Website Development</h3>
+                    <p class="service-description">
+                        From simple landing pages to complex web applications, we build responsive websites that look amazing on all devices.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">
+                        We craft interfaces that are not only visually stunning but also intuitive and user-friendly.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="service-title">Performance Optimization</h3>
+                    <p class="service-description">
+                        We ensure your website loads fast, ranks high, and provides optimal user experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="featured-projects">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Featured <span class="highlight-text">Projects</span></h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">A showcase of our recent work</p>
+        </div>
+        
+        <div class="row g-4 mt-3">
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-store"></i>
+                            <span>E-Commerce Platform</span>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">TechGear Shop</h3>
+                        <p class="project-description">A modern e-commerce platform with seamless checkout experience.</p>
+                        <div class="project-tags">
+                            <span class="tag">E-Commerce</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurant Website</span>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">Gourmet Bistro</h3>
+                        <p class="project-description">An elegant website with online reservation and menu management.</p>
+                        <div class="project-tags">
+                            <span class="tag">Restaurant</span>
+                            <span class="tag">Booking</span>
+                            <span class="tag">Menu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">DataViz Pro</h3>
+                        <p class="project-description">A comprehensive dashboard for data visualization and analysis.</p>
+                        <div class="project-tags">
+                            <span class="tag">Dashboard</span>
+                            <span class="tag">Analytics</span>
+                            <span class="tag">Data</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{{ url_for('portfolio') }}" class="btn btn-outline-primary btn-glow">View All Projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Preview -->
+<section class="pricing-preview">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Our <span class="highlight-text">Packages</span></h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Flexible solutions for any project size</p>
+        </div>
+        
+        <div class="row g-4 mt-3">
+            <div class="col-md-4">
+                <div class="pricing-card starter">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Basic</h3>
+                        <div class="pricing-price">$200</div>
+                        <p class="pricing-description">Perfect for small businesses</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Responsive design</li>
+                            <li><i class="fas fa-check"></i> Up to 5 pages</li>
+                            <li><i class="fas fa-check"></i> Contact form</li>
+                            <li><i class="fas fa-check"></i> Basic SEO setup</li>
+                            <li><i class="fas fa-check"></i> Mobile optimization</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="{{ url_for('contact') }}?package=Basic" class="btn btn-outline-primary btn-block">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="pricing-card professional">
+                    <div class="pricing-badge">Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Professional</h3>
+                        <div class="pricing-price">$500</div>
+                        <p class="pricing-description">For growing businesses</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Everything in Basic</li>
+                            <li><i class="fas fa-check"></i> Up to 10 pages</li>
+                            <li><i class="fas fa-check"></i> Advanced SEO</li>
+                            <li><i class="fas fa-check"></i> Custom animations</li>
+                            <li><i class="fas fa-check"></i> Social media integration</li>
+                            <li><i class="fas fa-check"></i> Blog setup</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="{{ url_for('contact') }}?package=Professional" class="btn btn-primary btn-glow btn-block">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="pricing-card enterprise">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">$1000</div>
+                        <p class="pricing-description">For large businesses</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Everything in Professional</li>
+                            <li><i class="fas fa-check"></i> Unlimited pages</li>
+                            <li><i class="fas fa-check"></i> E-commerce functionality</li>
+                            <li><i class="fas fa-check"></i> Custom backend development</li>
+                            <li><i class="fas fa-check"></i> Payment gateway integration</li>
+                            <li><i class="fas fa-check"></i> 1 year maintenance</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="{{ url_for('contact') }}?package=Enterprise" class="btn btn-outline-primary btn-block">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{{ url_for('pricing') }}" class="btn btn-outline-light">View Full Pricing Details</a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content text-center">
+            <h2 class="cta-title">Ready to Start Your Project?</h2>
+            <p class="cta-description">Let's discuss how we can help bring your vision to life.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg btn-glow">Contact Us Today</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
