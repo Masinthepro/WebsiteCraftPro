@@ -1,102 +1,249 @@
-document.addEventListener('DOMContentLoaded', function() {
+/**
+ * DevCraft Studios - Professional Web Development
+ * Form Validation Script
+ * 
+ * This file handles client-side form validation for the contact form
+ * to enhance user experience and reduce server requests with invalid data.
+ */
+
+(function() {
+  'use strict';
+  
+  // Wait for DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize form validation
+    initializeFormValidation();
+  });
+  
+  /**
+   * Initialize form validation
+   */
+  function initializeFormValidation() {
+    // Get the contact form
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            if (!validateForm()) {
-                event.preventDefault();
-            }
-        });
+      // Form input elements
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const phoneInput = document.getElementById('phone');
+      const messageInput = document.getElementById('message');
+      
+      // Form submission handler
+      contactForm.addEventListener('submit', function(event) {
+        // Reset previous error states
+        resetFormErrors();
         
-        // Real-time validation
-        const formInputs = contactForm.querySelectorAll('input, textarea, select');
-        formInputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                validateInput(this);
-            });
-        });
-    }
-    
-    // Validate the entire form
-    function validateForm() {
-        const name = document.getElementById('name');
-        const email = document.getElementById('email');
-        const phone = document.getElementById('phone');
-        const message = document.getElementById('message');
-        
+        // Validate form inputs
         let isValid = true;
         
-        if (!validateInput(name)) isValid = false;
-        if (!validateInput(email)) isValid = false;
-        if (phone && !validateInput(phone)) isValid = false;
-        if (!validateInput(message)) isValid = false;
-        
-        return isValid;
-    }
-    
-    // Validate individual input
-    function validateInput(input) {
-        const value = input.value.trim();
-        const id = input.id;
-        let isValid = true;
-        let errorMessage = '';
-        
-        // Clear previous error
-        clearError(input);
-        
-        // Check for empty required fields
-        if (input.hasAttribute('required') && value === '') {
-            errorMessage = 'This field is required';
-            isValid = false;
-        } 
-        // Validate email format
-        else if (id === 'email' && value !== '') {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                errorMessage = 'Please enter a valid email address';
-                isValid = false;
-            }
-        } 
-        // Validate phone format (optional)
-        else if (id === 'phone' && value !== '') {
-            const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
-            if (!phoneRegex.test(value)) {
-                errorMessage = 'Please enter a valid phone number';
-                isValid = false;
-            }
+        // Validate name
+        if (!validateName(nameInput.value)) {
+          showError(nameInput, 'Please enter your name');
+          isValid = false;
         }
         
-        // Display error if validation failed
+        // Validate email
+        if (!validateEmail(emailInput.value)) {
+          showError(emailInput, 'Please enter a valid email address');
+          isValid = false;
+        }
+        
+        // Validate phone (optional)
+        if (phoneInput.value && !validatePhone(phoneInput.value)) {
+          showError(phoneInput, 'Please enter a valid phone number');
+          isValid = false;
+        }
+        
+        // Validate message
+        if (!validateMessage(messageInput.value)) {
+          showError(messageInput, 'Please enter your message');
+          isValid = false;
+        }
+        
+        // Prevent form submission if validation fails
         if (!isValid) {
-            displayError(input, errorMessage);
+          event.preventDefault();
+        } else {
+          // Show loading state
+          showSubmittingState();
         }
-        
-        return isValid;
+      });
+      
+      // Real-time validation on input
+      if (nameInput) {
+        nameInput.addEventListener('input', function() {
+          validateInput(nameInput, validateName, 'Please enter your name');
+        });
+      }
+      
+      if (emailInput) {
+        emailInput.addEventListener('input', function() {
+          validateInput(emailInput, validateEmail, 'Please enter a valid email address');
+        });
+      }
+      
+      if (phoneInput) {
+        phoneInput.addEventListener('input', function() {
+          if (phoneInput.value) {
+            validateInput(phoneInput, validatePhone, 'Please enter a valid phone number');
+          } else {
+            // Phone is optional, so clear error if empty
+            clearError(phoneInput);
+          }
+        });
+      }
+      
+      if (messageInput) {
+        messageInput.addEventListener('input', function() {
+          validateInput(messageInput, validateMessage, 'Please enter your message');
+        });
+      }
     }
+  }
+  
+  /**
+   * Reset all form errors
+   */
+  function resetFormErrors() {
+    // Find all elements with the error class and remove it
+    document.querySelectorAll('.is-invalid').forEach(element => {
+      element.classList.remove('is-invalid');
+    });
     
-    // Display error message
-    function displayError(input, message) {
-        const formGroup = input.closest('.form-group');
-        const errorElement = document.createElement('div');
-        errorElement.className = 'error-message';
-        errorElement.style.color = 'var(--error-color)';
-        errorElement.style.fontSize = '0.875rem';
-        errorElement.style.marginTop = '0.25rem';
-        errorElement.textContent = message;
-        
-        input.style.borderColor = 'var(--error-color)';
-        formGroup.appendChild(errorElement);
+    // Remove all error messages
+    document.querySelectorAll('.invalid-feedback').forEach(element => {
+      element.remove();
+    });
+  }
+  
+  /**
+   * Validate a specific input using the provided validation function
+   * @param {HTMLElement} inputElement - The input element to validate
+   * @param {Function} validationFn - The validation function to use
+   * @param {String} errorMessage - The error message to show if validation fails
+   */
+  function validateInput(inputElement, validationFn, errorMessage) {
+    if (!validationFn(inputElement.value)) {
+      showError(inputElement, errorMessage);
+    } else {
+      clearError(inputElement);
     }
+  }
+  
+  /**
+   * Show error message for an input
+   * @param {HTMLElement} inputElement - The input element with error
+   * @param {String} message - The error message to display
+   */
+  function showError(inputElement, message) {
+    // Add error class to the input
+    inputElement.classList.add('is-invalid');
     
-    // Clear error message
-    function clearError(input) {
-        const formGroup = input.closest('.form-group');
-        const errorElement = formGroup.querySelector('.error-message');
-        
-        input.style.borderColor = '';
-        
-        if (errorElement) {
-            formGroup.removeChild(errorElement);
-        }
+    // Check if error message already exists
+    const existingError = inputElement.nextElementSibling;
+    if (existingError && existingError.classList.contains('invalid-feedback')) {
+      existingError.textContent = message;
+    } else {
+      // Create error message element
+      const errorElement = document.createElement('div');
+      errorElement.classList.add('invalid-feedback');
+      errorElement.textContent = message;
+      
+      // Insert error message after the input
+      inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
     }
-});
+  }
+  
+  /**
+   * Clear error message for an input
+   * @param {HTMLElement} inputElement - The input element to clear errors for
+   */
+  function clearError(inputElement) {
+    // Remove error class
+    inputElement.classList.remove('is-invalid');
+    
+    // Remove error message if it exists
+    const errorElement = inputElement.nextElementSibling;
+    if (errorElement && errorElement.classList.contains('invalid-feedback')) {
+      errorElement.remove();
+    }
+  }
+  
+  /**
+   * Show submitting state on the form
+   */
+  function showSubmittingState() {
+    const submitButton = document.querySelector('#contactForm button[type="submit"]');
+    if (submitButton) {
+      // Disable the button and show loading state
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+    }
+  }
+  
+  /**
+   * Validate name input
+   * @param {String} name - The name to validate
+   * @returns {Boolean} - True if valid, false otherwise
+   */
+  function validateName(name) {
+    return name.trim().length > 0;
+  }
+  
+  /**
+   * Validate email input
+   * @param {String} email - The email to validate
+   * @returns {Boolean} - True if valid, false otherwise
+   */
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  
+  /**
+   * Validate phone input
+   * @param {String} phone - The phone number to validate
+   * @returns {Boolean} - True if valid, false otherwise
+   */
+  function validatePhone(phone) {
+    // Simple validation for phone numbers
+    // Accepts formats like: (123) 456-7890, 123-456-7890, 123.456.7890, 1234567890
+    const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4}$/;
+    return phoneRegex.test(phone);
+  }
+  
+  /**
+   * Validate message input
+   * @param {String} message - The message to validate
+   * @returns {Boolean} - True if valid, false otherwise
+   */
+  function validateMessage(message) {
+    return message.trim().length > 0;
+  }
+  
+  /**
+   * Handle URL parameters for pre-selecting a package
+   */
+  function handleUrlParameters() {
+    // Check if package parameter exists in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const packageParam = urlParams.get('package');
+    
+    if (packageParam) {
+      const packageSelect = document.getElementById('package');
+      if (packageSelect) {
+        // Find and select the option that matches the package parameter
+        Array.from(packageSelect.options).forEach(option => {
+          if (option.value === packageParam) {
+            option.selected = true;
+          }
+        });
+      }
+    }
+  }
+  
+  // Handle URL parameters (like pre-selecting a package)
+  handleUrlParameters();
+  
+})();

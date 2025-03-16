@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Message Sent - DevCraft Studios{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title glow-text">Message <span class="highlight-text">Received</span></h1>
+        <div class="page-breadcrumb">
+            <a href="{{ url_for('index') }}">Home</a> / <a href="{{ url_for('contact') }}">Contact</a> / Confirmation
+        </div>
+    </div>
+</section>
+
+<!-- Confirmation Section -->
+<section class="confirmation-section">
+    <div class="container">
+        <div class="confirmation-card">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h2 class="confirmation-title">Thank You for Reaching Out!</h2>
+            
+            <p class="confirmation-message">
+                We've received your message and appreciate your interest in DevCraft Studios. 
+                Our team will review your inquiry and get back to you shortly.
+            </p>
+            
+            {% if submission %}
+            <div class="submission-details">
+                <h3 class="details-title">Your Message Details</h3>
+                
+                <div class="details-item">
+                    <div class="details-label">Name:</div>
+                    <div class="details-value">{{ submission.name }}</div>
+                </div>
+                
+                <div class="details-item">
+                    <div class="details-label">Email:</div>
+                    <div class="details-value">{{ submission.email }}</div>
+                </div>
+                
+                {% if submission.phone %}
+                <div class="details-item">
+                    <div class="details-label">Phone:</div>
+                    <div class="details-value">{{ submission.phone }}</div>
+                </div>
+                {% endif %}
+                
+                {% if submission.package %}
+                <div class="details-item">
+                    <div class="details-label">Package:</div>
+                    <div class="details-value">{{ submission.package }}</div>
+                </div>
+                {% endif %}
+                
+                <div class="details-item">
+                    <div class="details-label">Message:</div>
+                    <div class="details-value message-text">{{ submission.message }}</div>
+                </div>
+                
+                <div class="details-item">
+                    <div class="details-label">Submitted on:</div>
+                    <div class="details-value">{{ submission.timestamp }}</div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="next-steps">
+                <h3 class="next-title">What's Next?</h3>
+                <ul class="next-list">
+                    <li><i class="fas fa-envelope"></i> You'll receive a confirmation email shortly.</li>
+                    <li><i class="fas fa-clock"></i> We'll review your inquiry and respond within 24-48 business hours.</li>
+                    <li><i class="fas fa-phone-alt"></i> We may call you to discuss your project in more detail.</li>
+                </ul>
+            </div>
+            
+            <div class="confirmation-actions">
+                <a href="{{ url_for('index') }}" class="btn btn-outline-primary">Back to Home</a>
+                <a href="{{ url_for('portfolio') }}" class="btn btn-primary btn-glow">View Our Work</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
